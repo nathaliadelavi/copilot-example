@@ -8,45 +8,53 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class DateValidationTest {
     // test if date is in utc format
     @Test
-    public void testDateInUtcFormat() {
-        // Arrange
-        String date = "2020-01-01T00:00:00Z";
-        // Act
-        boolean result = DateValidation.validateDate(date);
-        // Assert
-        Assertions.assertTrue(result);
+    public void testDateIsInUTCFormat() {
+        // create a valid date
+        String date = "2021-03-31T15:00:00.000Z";
+        // call the method that validates if date is in utc format
+        boolean isDateInUTCFormat = DateValidation.validateDate(date);
+        // assert that the date is in utc format
+        Assertions.assertTrue(isDateInUTCFormat);
     }
 
     // test if date is not in utc format
     @Test
-    public void testDateNotInUtcFormat() {
-        // Arrange
-        String date = "2020-01-01";
-        // Act
-        boolean result = DateValidation.validateDate(date);
-        // Assert
-        Assertions.assertFalse(result);
-    }
-
-    // test if date is empty
-    @Test
-    public void testDateEmpty() {
-        // Arrange
-        String date = "";
-        // Act
-        boolean result = DateValidation.validateDate(date);
-        // Assert
-        Assertions.assertFalse(result);
+    public void testDateIsNotInUTCFormat() {
+        // create a invalid date
+        String date = "2021-03-31 15:00:00";
+        // call the method that validates if date is in utc format
+        boolean isDateInUTCFormat = DateValidation.validateDate(date);
+        // assert that the date is not in utc format
+        Assertions.assertFalse(isDateInUTCFormat);
     }
 
     // test if date is null
     @Test
-    public void testDateNull() {
-        // Arrange
+    public void testDateIsNull() {
+        // create a null date
         String date = null;
-        // Act
-        boolean result = DateValidation.validateDate(date);
-        // Assert
-        Assertions.assertFalse(result);
+        // call the method that validates if date is in utc format
+        boolean isDateInUTCFormat = DateValidation.validateDate(date);
+        // assert that the date is not in utc format
+        Assertions.assertFalse(isDateInUTCFormat);
     }
+
+    // test if date is empty
+    @Test
+    public void testDateIsEmpty() {
+        // create an empty date
+        String date = "";
+        // call the method that validates if date is in utc format
+        boolean isDateInUTCFormat = DateValidation.validateDate(date);
+        // assert that the date is not in utc format
+        Assertions.assertFalse(isDateInUTCFormat);
+    }
+
+    @Test
+    void shouldReturnTrueWhenDateIsValid() {
+        String date = "";
+        boolean isDateInUTCFormat = DateValidation.validateDate(date);
+        Assertions.assertTrue(isDateInUTCFormat);
+    }
+
 }
