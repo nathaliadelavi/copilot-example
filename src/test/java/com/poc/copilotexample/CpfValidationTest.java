@@ -18,4 +18,11 @@ public class CpfValidationTest {
         boolean isValid = cpfValidation.validateCPF("32980354083");
         assert !isValid;
     }
+
+    @Test
+    void shouldReturnFalseWhenCpfHasALetter() {
+        CpfValidation cpfValidation = new CpfValidation();
+        boolean isValid = cpfValidation.validateCPF("3298035408a");
+        assert !isValid;
+    }
 }
